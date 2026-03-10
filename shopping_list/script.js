@@ -22,6 +22,10 @@ button.onclick = function (event) {
   li.appendChild(span);
   li.appendChild(deleteButton);
   span.textContent = item;
+  li.onclick = function (e) {
+    if (e.target === deleteButton) return;
+    span.classList.toggle('crossed');
+  };
   deleteButton.textContent = 'DEL';
   deleteButton.onclick = function () {
     ulist.removeChild(li);
