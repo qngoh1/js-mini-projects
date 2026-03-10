@@ -1,0 +1,172 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: #1a1a2e;
+  background-image:
+    radial-gradient(circle at 30% 70%, #ff6b9d22 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, #c44dff22 0%, transparent 50%);
+  font-family: 'Press Start 2P', monospace;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.container {
+  background: #16213e;
+  border: 4px solid #e94560;
+  border-radius: 4px;
+  padding: 28px 24px;
+  width: 400px;
+  box-shadow:
+    0 0 20px #e9456066,
+    0 0 60px #e9456022,
+    8px 8px 0px #0f3460;
+}
+
+h1 {
+  font-size: 0.85rem;
+  color: #e94560;
+  text-shadow: 0 0 10px #e94560;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 2px;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+label {
+  display: none;
+}
+
+input[type="text"] {
+  flex: 1;
+  background: #0a3d2a;
+  border: 3px solid #1a5c3a;
+  border-radius: 2px;
+  color: #4ade80;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.55rem;
+  padding: 12px;
+  outline: none;
+  text-shadow: 0 0 8px #4ade80;
+  box-shadow: inset 0 0 10px #00000088;
+}
+
+input[type="text"]::placeholder {
+  color: #4ade8066;
+}
+
+input[type="text"]:focus {
+  border-color: #4ade80;
+  box-shadow: inset 0 0 10px #00000088, 0 0 8px #4ade8033;
+}
+
+form > button {
+  background: #0ead69;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  border: none;
+  border-radius: 2px;
+  padding: 12px 16px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 #00000066;
+  box-shadow:
+    0 4px 0 #087a48,
+    0 5px 8px #00000044;
+  transition: all 0.08s;
+  position: relative;
+  top: 0;
+}
+
+form > button:hover {
+  background: #2fd882;
+  top: -1px;
+  box-shadow:
+    0 5px 0 #087a48,
+    0 6px 10px #00000044;
+}
+
+form > button:active {
+  top: 4px;
+  box-shadow:
+    0 0px 0 #087a48,
+    0 1px 4px #00000044;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  background: #1a2a4a;
+  border: 2px solid #333;
+  border-radius: 2px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: border-color 0.15s;
+}
+
+li:hover {
+  border-color: #533483;
+}
+
+li span {
+  font-size: 0.55rem;
+  color: #4ade80;
+  text-shadow: 0 0 6px #4ade8044;
+}
+
+li button {
+  background: #e94560;
+  color: #fff;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  border: none;
+  border-radius: 2px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-shadow: 1px 1px 0 #00000066;
+  box-shadow:
+    0 3px 0 #b8233e,
+    0 4px 6px #00000044;
+  transition: all 0.08s;
+  position: relative;
+  top: 0;
+}
+
+li button:hover {
+  background: #ff6b84;
+  top: -1px;
+  box-shadow:
+    0 4px 0 #b8233e,
+    0 5px 8px #00000044;
+}
+
+li button:active {
+  top: 3px;
+  box-shadow:
+    0 0px 0 #b8233e,
+    0 1px 4px #00000044;
+}
+
+.empty-msg {
+  text-align: center;
+  font-size: 0.45rem;
+  color: #555;
+  padding: 20px 0;
+  letter-spacing: 1px;
+}

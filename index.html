@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Mini Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #1a1a2e;
+            background-image:
+                radial-gradient(circle at 20% 80%, #ff6b9d22 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, #c44dff22 0%, transparent 50%);
+            font-family: 'Press Start 2P', monospace;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: #e94560;
+            text-shadow: 0 0 20px #e9456066;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 0.55rem;
+            color: #888;
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            max-width: 560px;
+            width: 100%;
+        }
+
+        .project-card {
+            background: #16213e;
+            border: 3px solid #333;
+            border-radius: 4px;
+            padding: 28px 24px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.15s;
+            position: relative;
+            top: 0;
+            box-shadow: 6px 6px 0 #0f3460;
+        }
+
+        .project-card:hover {
+            top: -4px;
+            border-color: #e94560;
+            box-shadow:
+                6px 10px 0 #0f3460,
+                0 0 20px #e9456033;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .project-name {
+            font-size: 0.7rem;
+            margin-bottom: 10px;
+            color: #4ade80;
+            text-shadow: 0 0 8px #4ade8044;
+        }
+
+        .project-desc {
+            font-size: 0.5rem;
+            color: #888;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>JS MINI PROJECTS</h1>
+    <p class="subtitle">SELECT A PROJECT TO PLAY</p>
+
+    <div class="projects">
+        <a href="calculator/index.html" class="project-card">
+            <span class="project-icon">&#x1F4DF;</span>
+            <div class="project-name">CALCULATOR</div>
+            <div class="project-desc">Retro calc with +, -, x, / operations</div>
+        </a>
+
+        <a href="rock_paper_scissors/index.html" class="project-card">
+            <span class="project-icon">&#x270A;</span>
+            <div class="project-name">ROCK PAPER SCISSORS</div>
+            <div class="project-desc">Classic game against the computer</div>
+        </a>
+
+        <a href="colour_grid/index.html" class="project-card">
+            <span class="project-icon">&#x1F3A8;</span>
+            <div class="project-name">COLOUR GRID</div>
+            <div class="project-desc">Interactive colour grid playground</div>
+        </a>
+
+        <a href="shopping_list/index.html" class="project-card">
+            <span class="project-icon">&#x1F6D2;</span>
+            <div class="project-name">SHOPPING LIST</div>
+            <div class="project-desc">Add and manage your shopping items</div>
+        </a>
+    </div>
+</body>
+</html>
