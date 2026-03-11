@@ -1,52 +1,36 @@
-// Get the container element
-const container = document.getElementById('container');
+const container = document.getElementById('grid-container');
 const resetBtn = document.getElementById('reset-btn');
-const CONTAINER_SIZE = 960; // Container width and height in pixels
-
-// Function to create a grid with specified number of squares per side
+const gridSizeInput = document.getElementById('grid-size');
 function createGrid(squaresPerSide) {
-    // Clear existing grid
     container.innerHTML = '';
 
-    // Calculate square size
-    const squareSize = CONTAINER_SIZE / squaresPerSide;
+    container.style.gridTemplateColumns = `repeat(${squaresPerSide}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${squaresPerSide}, 1fr)`;
 
-    // Create grid squares
     const totalSquares = squaresPerSide * squaresPerSide;
     for (let i = 0; i < totalSquares; i++) {
         const square = document.createElement('div');
         square.classList.add('grid-square');
-        square.style.width = `${squareSize}px`;
-        square.style.height = `${squareSize}px`;
 
-        // Initialize interaction count and base color
         let interactionCount = 0;
         let baseColor = null;
 
-        // Add hover effect with random RGB and progressive darkening
         square.addEventListener('mouseenter', function() {
             interactionCount++;
 
-            // On first interaction, set random pink shade
             if (interactionCount === 1) {
-                // Shades of pink
-                const pinkShades = [
-                    { r: 255, g: 192, b: 203 },  // light pink
-                    { r: 255, g: 182, b: 193 },  // light pink (deeper)
-                    { r: 255, g: 105, b: 180 },  // hot pink
-                    { r: 255, g: 20, b: 147 },   // deep pink
-                    { r: 219, g: 112, b: 147 },  // pale violet red
-                    { r: 255, g: 0, b: 255 },    // magenta
-                    { r: 255, g: 160, b: 122 },  // light salmon
-                    { r: 255, g: 105, b: 180 },  // hot pink
-                    { r: 238, g: 130, b: 238 },  // violet
-                    { r: 255, g: 228, b: 225 }   // misty rose
+                const neonColors = [
+                    { r: 233, g: 69, b: 96 },   // neon red
+                    { r: 196, g: 77, b: 255 },   // electric purple
+                    { r: 74, g: 222, b: 128 },    // terminal green
+                    { r: 255, g: 217, b: 61 },    // arcade yellow
+                    { r: 0, g: 212, b: 255 },     // cyan
+                    { r: 255, g: 107, b: 157 },   // hot pink
+                    { r: 255, g: 140, b: 66 },    // neon orange
                 ];
-                baseColor = pinkShades[Math.floor(Math.random() * pinkShades.length)];
+                baseColor = neonColors[Math.floor(Math.random() * neonColors.length)];
             }
 
-            // Calculate darkening factor (10% darker each time)
-            // After 10 interactions, should be fully black
             const darkenFactor = Math.max(0, 1 - (interactionCount * 0.1));
 
             const r = Math.floor(baseColor.r * darkenFactor);
@@ -54,34 +38,27 @@ function createGrid(squaresPerSide) {
             const b = Math.floor(baseColor.b * darkenFactor);
 
             square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+            square.style.boxShadow = `inset 0 0 ${4 * darkenFactor}px rgba(${baseColor.r}, ${baseColor.g}, ${baseColor.b}, ${darkenFactor * 0.6})`;
         });
 
         container.appendChild(square);
     }
 }
 
-// Create initial 16x16 grid
 createGrid(16);
 
-// Add event listener to reset button
 resetBtn.addEventListener('click', function() {
-    console.log('Button clicked!'); // Debug log
-    let userInput = prompt('Enter number of squares per side (max 100):');
+    let squaresPerSide = parseInt(gridSizeInput.value);
 
-    // Convert to number
-    let squaresPerSide = parseInt(userInput);
-
-    // Validate input
     if (isNaN(squaresPerSide) || squaresPerSide < 1) {
-        alert('Please enter a valid number greater than 0');
-        return;
+        squaresPerSide = 16;
+        gridSizeInput.value = 16;
     }
 
     if (squaresPerSide > 100) {
-        alert('Maximum size is 100x100. Setting to 100.');
         squaresPerSide = 100;
+        gridSizeInput.value = 100;
     }
 
-    // Create new grid
     createGrid(squaresPerSide);
 });

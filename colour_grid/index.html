@@ -3,12 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>16x16 Grid</title>
+    <title>Colour Grid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="reset-btn">New Grid</button>
-    <div id="container"></div>
+    <div class="container">
+        <h1>COLOUR GRID</h1>
+
+        <div class="controls">
+            <input type="number" id="grid-size" min="1" max="100" value="16" placeholder="Size...">
+            <button id="reset-btn">NEW GRID</button>
+        </div>
+
+        <div class="grid-wrapper">
+            <div id="grid-container"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
