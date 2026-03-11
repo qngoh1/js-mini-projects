@@ -143,3 +143,238 @@ h1 {
 .grid-square.lit {
   box-shadow: inset 0 0 4px currentColor;
 }
+
+/* Nyan cat — 3px pixel grid, based on reference image */
+/* Colours: tan crust #c8a882, pink frosting #ff99aa, spots #ff6680 */
+/* Cat: grey #999, dark grey #666, eyes #333, cheeks #ff6680 */
+
+.nyan-cat {
+  position: fixed;
+  bottom: 30px;
+  left: -180px;
+  width: 3px;
+  height: 3px;
+  animation: fly 10s linear infinite;
+  z-index: 100;
+}
+
+@keyframes fly {
+  0%   { left: -180px; bottom: 30px; }
+  25%  { bottom: 36px; }
+  50%  { bottom: 26px; }
+  75%  { bottom: 34px; }
+  100% { left: 100vw;  bottom: 30px; }
+}
+
+/* Rainbow trail — segmented wavy ribbon */
+.rainbow {
+  position: absolute;
+  top: 9px;
+  left: -114px;
+  width: 120px;
+  height: 24px;
+  display: flex;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 40%);
+  mask-image: linear-gradient(to right, transparent, black 40%);
+}
+
+.rainbow-seg {
+  flex: 1;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ff0000 0px,  #ff0000 3px,
+    #ff9900 3px,  #ff9900 6px,
+    #ffff00 6px,  #ffff00 9px,
+    #33ff00 9px,  #33ff00 12px,
+    #0099ff 12px, #0099ff 15px,
+    #6633ff 15px, #6633ff 18px
+  );
+  height: 18px;
+  animation: wave 0.3s ease-in-out infinite;
+}
+
+/* 16 segments, delay spread = 3 full waves across the trail */
+/* Each segment offset by 0.3/16*3 ≈ 0.056s */
+.rainbow-seg:nth-child(1)  { animation-delay: -0.000s; }
+.rainbow-seg:nth-child(2)  { animation-delay: -0.056s; }
+.rainbow-seg:nth-child(3)  { animation-delay: -0.112s; }
+.rainbow-seg:nth-child(4)  { animation-delay: -0.168s; }
+.rainbow-seg:nth-child(5)  { animation-delay: -0.225s; }
+.rainbow-seg:nth-child(6)  { animation-delay: -0.281s; }
+.rainbow-seg:nth-child(7)  { animation-delay: -0.337s; }
+.rainbow-seg:nth-child(8)  { animation-delay: -0.393s; }
+.rainbow-seg:nth-child(9)  { animation-delay: -0.450s; }
+.rainbow-seg:nth-child(10) { animation-delay: -0.506s; }
+.rainbow-seg:nth-child(11) { animation-delay: -0.562s; }
+.rainbow-seg:nth-child(12) { animation-delay: -0.618s; }
+.rainbow-seg:nth-child(13) { animation-delay: -0.675s; }
+.rainbow-seg:nth-child(14) { animation-delay: -0.731s; }
+.rainbow-seg:nth-child(15) { animation-delay: -0.787s; }
+.rainbow-seg:nth-child(16) { animation-delay: -0.843s; }
+
+@keyframes wave {
+  0%, 100% { transform: translateY(-1px); }
+  50%      { transform: translateY(1px); }
+}
+
+.cat-frame {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  top: 0;
+  left: 0;
+}
+
+/* s=3px. Pop-tart = 10 wide x 9 tall. Cat face = 6 wide, right side */
+/* Frame 1: legs extended down */
+.cat-frame-1 {
+  animation: frame-toggle 0.25s steps(1) infinite;
+  box-shadow:
+    /* === POP-TART CRUST (tan border) === */
+    /* top crust */
+     6px  0px 0 #c8a882,  9px  0px 0 #c8a882, 12px  0px 0 #c8a882,
+    15px  0px 0 #c8a882, 18px  0px 0 #c8a882, 21px  0px 0 #c8a882,
+    24px  0px 0 #c8a882,
+    /* left crust */
+     3px  3px 0 #c8a882,  3px  6px 0 #c8a882,  3px  9px 0 #c8a882,
+     3px 12px 0 #c8a882,  3px 15px 0 #c8a882,  3px 18px 0 #c8a882,
+     3px 21px 0 #c8a882,
+    /* right crust */
+    27px  3px 0 #c8a882, 27px  6px 0 #c8a882, 27px  9px 0 #c8a882,
+    27px 12px 0 #c8a882, 27px 15px 0 #c8a882, 27px 18px 0 #c8a882,
+    27px 21px 0 #c8a882,
+    /* bottom crust */
+     6px 24px 0 #c8a882,  9px 24px 0 #c8a882, 12px 24px 0 #c8a882,
+    15px 24px 0 #c8a882, 18px 24px 0 #c8a882, 21px 24px 0 #c8a882,
+    24px 24px 0 #c8a882,
+
+    /* === PINK FROSTING FILL === */
+     6px  3px 0 #ff99aa,  9px  3px 0 #ff99aa, 12px  3px 0 #ff99aa,
+    15px  3px 0 #ff99aa, 18px  3px 0 #ff99aa, 21px  3px 0 #ff99aa,
+    24px  3px 0 #ff99aa,
+     6px  6px 0 #ff99aa,  9px  6px 0 #ff99aa, 12px  6px 0 #ff99aa,
+    15px  6px 0 #ff99aa, 18px  6px 0 #ff99aa, 21px  6px 0 #ff99aa,
+    24px  6px 0 #ff99aa,
+     6px  9px 0 #ff99aa,  9px  9px 0 #ff99aa, 12px  9px 0 #ff99aa,
+    15px  9px 0 #ff99aa, 18px  9px 0 #ff99aa, 21px  9px 0 #ff99aa,
+    24px  9px 0 #ff99aa,
+     6px 12px 0 #ff99aa,  9px 12px 0 #ff99aa, 12px 12px 0 #ff99aa,
+    15px 12px 0 #ff99aa, 18px 12px 0 #ff99aa, 21px 12px 0 #ff99aa,
+    24px 12px 0 #ff99aa,
+     6px 15px 0 #ff99aa,  9px 15px 0 #ff99aa, 12px 15px 0 #ff99aa,
+    15px 15px 0 #ff99aa, 18px 15px 0 #ff99aa, 21px 15px 0 #ff99aa,
+    24px 15px 0 #ff99aa,
+     6px 18px 0 #ff99aa,  9px 18px 0 #ff99aa, 12px 18px 0 #ff99aa,
+    15px 18px 0 #ff99aa, 18px 18px 0 #ff99aa, 21px 18px 0 #ff99aa,
+    24px 18px 0 #ff99aa,
+     6px 21px 0 #ff99aa,  9px 21px 0 #ff99aa, 12px 21px 0 #ff99aa,
+    15px 21px 0 #ff99aa, 18px 21px 0 #ff99aa, 21px 21px 0 #ff99aa,
+    24px 21px 0 #ff99aa,
+
+    /* === DARK PINK SPOTS on frosting === */
+     9px  6px 0 #ff6680, 18px  9px 0 #ff6680,
+    12px 15px 0 #ff6680, 21px  6px 0 #ff6680,
+     9px 18px 0 #ff6680, 21px 18px 0 #ff6680,
+    15px 12px 0 #ff6680,
+
+    /* === CAT HEAD (grey, right side) === */
+    /* ears - pointy, sticking up */
+    30px -3px 0 #999, 39px -3px 0 #999,
+    30px  0px 0 #999, 33px  0px 0 #999, 36px  0px 0 #999, 39px  0px 0 #999,
+    /* head fill */
+    30px  3px 0 #999, 33px  3px 0 #999, 36px  3px 0 #999, 39px  3px 0 #999,
+    /* eye row */
+    30px  6px 0 #999, 33px  6px 0 #333, 36px  6px 0 #999, 39px  6px 0 #333, 42px  6px 0 #999,
+    /* cheek row */
+    30px  9px 0 #999, 33px  9px 0 #ff6680, 36px  9px 0 #999, 39px  9px 0 #ff6680, 42px  9px 0 #999,
+    /* mouth row */
+    30px 12px 0 #999, 33px 12px 0 #999, 36px 12px 0 #999, 39px 12px 0 #999, 42px 12px 0 #999,
+    /* chin */
+    33px 15px 0 #999, 36px 15px 0 #999, 39px 15px 0 #999,
+
+    /* === TAIL (left side, curving up) === */
+    -3px  9px 0 #999, -3px 12px 0 #999,
+    -6px  6px 0 #999, -6px  9px 0 #999,
+
+    /* === LEGS frame 1: extended === */
+     6px 27px 0 #999,  9px 27px 0 #999,
+    21px 27px 0 #999, 24px 27px 0 #999,
+     6px 30px 0 #999, 24px 30px 0 #999;
+}
+
+/* Frame 2: legs tucked, body up 1 pixel */
+.cat-frame-2 {
+  animation: frame-toggle-alt 0.25s steps(1) infinite;
+  box-shadow:
+    /* === POP-TART CRUST === */
+     6px -3px 0 #c8a882,  9px -3px 0 #c8a882, 12px -3px 0 #c8a882,
+    15px -3px 0 #c8a882, 18px -3px 0 #c8a882, 21px -3px 0 #c8a882,
+    24px -3px 0 #c8a882,
+     3px  0px 0 #c8a882,  3px  3px 0 #c8a882,  3px  6px 0 #c8a882,
+     3px  9px 0 #c8a882,  3px 12px 0 #c8a882,  3px 15px 0 #c8a882,
+     3px 18px 0 #c8a882,
+    27px  0px 0 #c8a882, 27px  3px 0 #c8a882, 27px  6px 0 #c8a882,
+    27px  9px 0 #c8a882, 27px 12px 0 #c8a882, 27px 15px 0 #c8a882,
+    27px 18px 0 #c8a882,
+     6px 21px 0 #c8a882,  9px 21px 0 #c8a882, 12px 21px 0 #c8a882,
+    15px 21px 0 #c8a882, 18px 21px 0 #c8a882, 21px 21px 0 #c8a882,
+    24px 21px 0 #c8a882,
+
+    /* === PINK FROSTING === */
+     6px  0px 0 #ff99aa,  9px  0px 0 #ff99aa, 12px  0px 0 #ff99aa,
+    15px  0px 0 #ff99aa, 18px  0px 0 #ff99aa, 21px  0px 0 #ff99aa,
+    24px  0px 0 #ff99aa,
+     6px  3px 0 #ff99aa,  9px  3px 0 #ff99aa, 12px  3px 0 #ff99aa,
+    15px  3px 0 #ff99aa, 18px  3px 0 #ff99aa, 21px  3px 0 #ff99aa,
+    24px  3px 0 #ff99aa,
+     6px  6px 0 #ff99aa,  9px  6px 0 #ff99aa, 12px  6px 0 #ff99aa,
+    15px  6px 0 #ff99aa, 18px  6px 0 #ff99aa, 21px  6px 0 #ff99aa,
+    24px  6px 0 #ff99aa,
+     6px  9px 0 #ff99aa,  9px  9px 0 #ff99aa, 12px  9px 0 #ff99aa,
+    15px  9px 0 #ff99aa, 18px  9px 0 #ff99aa, 21px  9px 0 #ff99aa,
+    24px  9px 0 #ff99aa,
+     6px 12px 0 #ff99aa,  9px 12px 0 #ff99aa, 12px 12px 0 #ff99aa,
+    15px 12px 0 #ff99aa, 18px 12px 0 #ff99aa, 21px 12px 0 #ff99aa,
+    24px 12px 0 #ff99aa,
+     6px 15px 0 #ff99aa,  9px 15px 0 #ff99aa, 12px 15px 0 #ff99aa,
+    15px 15px 0 #ff99aa, 18px 15px 0 #ff99aa, 21px 15px 0 #ff99aa,
+    24px 15px 0 #ff99aa,
+     6px 18px 0 #ff99aa,  9px 18px 0 #ff99aa, 12px 18px 0 #ff99aa,
+    15px 18px 0 #ff99aa, 18px 18px 0 #ff99aa, 21px 18px 0 #ff99aa,
+    24px 18px 0 #ff99aa,
+
+    /* === SPOTS === */
+     9px  3px 0 #ff6680, 18px  6px 0 #ff6680,
+    12px 12px 0 #ff6680, 21px  3px 0 #ff6680,
+     9px 15px 0 #ff6680, 21px 15px 0 #ff6680,
+    15px  9px 0 #ff6680,
+
+    /* === CAT HEAD (shifted up 1px with body) === */
+    30px -6px 0 #999, 39px -6px 0 #999,
+    30px -3px 0 #999, 33px -3px 0 #999, 36px -3px 0 #999, 39px -3px 0 #999,
+    30px  0px 0 #999, 33px  0px 0 #999, 36px  0px 0 #999, 39px  0px 0 #999,
+    30px  3px 0 #999, 33px  3px 0 #333, 36px  3px 0 #999, 39px  3px 0 #333, 42px  3px 0 #999,
+    30px  6px 0 #999, 33px  6px 0 #ff6680, 36px  6px 0 #999, 39px  6px 0 #ff6680, 42px  6px 0 #999,
+    30px  9px 0 #999, 33px  9px 0 #999, 36px  9px 0 #999, 39px  9px 0 #999, 42px  9px 0 #999,
+    33px 12px 0 #999, 36px 12px 0 #999, 39px 12px 0 #999,
+
+    /* === TAIL === */
+    -3px  6px 0 #999, -3px  9px 0 #999,
+    -6px  3px 0 #999, -6px  6px 0 #999,
+
+    /* === LEGS frame 2: tucked === */
+     9px 24px 0 #999, 12px 24px 0 #999,
+    18px 24px 0 #999, 21px 24px 0 #999;
+}
+
+@keyframes frame-toggle {
+  0%   { opacity: 1; }
+  50%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes frame-toggle-alt {
+  0%   { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
+}
