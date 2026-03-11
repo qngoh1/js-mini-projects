@@ -1,0 +1,167 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: #1a1a2e;
+  background-image:
+    radial-gradient(circle at 30% 70%, #ff6b9d22 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, #c44dff22 0%, transparent 50%);
+  font-family: 'Press Start 2P', monospace;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.container {
+  background: #16213e;
+  border: 4px solid #e94560;
+  border-radius: 4px;
+  padding: 28px 24px;
+  width: 480px;
+  box-shadow:
+    0 0 20px #e9456066,
+    0 0 60px #e9456022,
+    8px 8px 0px #0f3460;
+  text-align: center;
+}
+
+h1 {
+  font-size: 16px;
+  color: #e94560;
+  text-shadow: 2px 2px 0px #0f3460;
+  margin-bottom: 24px;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 20px;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-label {
+  font-size: 12px;
+  color: #a8a8b3;
+}
+
+.score-value {
+  font-size: 28px;
+  color: #c44dff;
+  text-shadow: 0 0 10px #c44dff66;
+}
+
+.round-info {
+  font-size: 10px;
+  color: #a8a8b3;
+  margin-bottom: 20px;
+}
+
+.choices {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.choice-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 14px 16px;
+  background: #0f3460;
+  color: #fff;
+  border: 3px solid #e94560;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.choice-btn:hover {
+  background: #e94560;
+  box-shadow: 0 0 12px #e9456088;
+  transform: translateY(-2px);
+}
+
+.choice-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  background: #0f3460;
+}
+
+.result {
+  font-size: 11px;
+  line-height: 1.8;
+  min-height: 48px;
+  color: #ff6b9d;
+}
+
+.result.win {
+  color: #4dff91;
+}
+
+.result.lose {
+  color: #ff4d6a;
+}
+
+.result.tie {
+  color: #ffd93d;
+}
+
+.game-over {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #e9456044;
+}
+
+.game-over.hidden {
+  display: none;
+}
+
+.final-result {
+  font-size: 13px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.final-result.win {
+  color: #4dff91;
+}
+
+.final-result.lose {
+  color: #ff4d6a;
+}
+
+.final-result.tie {
+  color: #ffd93d;
+}
+
+.play-again-btn {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  padding: 12px 24px;
+  background: #c44dff;
+  color: #fff;
+  border: 3px solid #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.play-again-btn:hover {
+  background: #e94560;
+  box-shadow: 0 0 16px #e9456088;
+  transform: translateY(-2px);
+}

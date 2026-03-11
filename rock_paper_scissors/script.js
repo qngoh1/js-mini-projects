@@ -1,71 +1,104 @@
-// // Create a new function named getComputerChoice.
-// randomly return one of: “rock”, “paper” or “scissors”.
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
     const randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
 
-// Create a new function named getHumanChoice.
-// Write the code so that getHumanChoice will return one of the valid choices depending on what the user inputs.
-function getHumanChoice() {
-    let userInput = prompt("Please enter rock, paper, or scissors:");
-    userInput = userInput.toLowerCase();
-    if (userInput === "rock" || userInput === "paper" || userInput === "scissors") {
-        return userInput;
-    } else {
-        console.log("Invalid input. Please try again.");
-        return getHumanChoice(); // Recursively call until valid input is received
-    }
-}
+let humanScore = 0;
+let computerScore = 0;
+let currentRound = 1;
+const totalRounds = 5;
 
-// Create a new function named playRound.
-// Define two parameters for playRound: humanChoice and computerChoice. Use these two parameters to take the human and computer choices as arguments.
-// Make your function’s humanChoice parameter case-insensitive so that players can input “rock”, “ROCK”, “RocK”, or other variations.
-// Write the code for your playRound function to console.log a string value representing the round winner, such as: “You lose! Paper beats Rock”.
-// Increment the humanScore or computerScore variable based on the round winner.
+const humanScoreEl = document.getElementById("human-score");
+const computerScoreEl = document.getElementById("computer-score");
+const roundInfoEl = document.getElementById("round-info");
+const resultEl = document.getElementById("result");
+const gameOverEl = document.getElementById("game-over");
+const finalResultEl = document.getElementById("final-result");
+const playAgainBtn = document.getElementById("play-again");
+const choiceBtns = document.querySelectorAll("[data-choice]");
 
-function playRound(humanChoice, computerChoice, humanScore, computerScore) {
-    humanChoice = humanChoice.toLowerCase();
+function playRound(humanChoice) {
+    const computerChoice = getComputerChoice();
+    let message;
+    let outcome;
+
     if (humanChoice === computerChoice) {
-        console.log("It's a tie! Both chose " + humanChoice);
+        message = "TIE! BOTH CHOSE " + humanChoice.toUpperCase();
+        outcome = "tie";
     } else if (
         (humanChoice === "rock" && computerChoice === "scissors") ||
         (humanChoice === "paper" && computerChoice === "rock") ||
         (humanChoice === "scissors" && computerChoice === "paper")
     ) {
-        console.log("You win! " + humanChoice + " beats " + computerChoice);
         humanScore++;
+        message = "YOU WIN! " + humanChoice.toUpperCase() + " BEATS " + computerChoice.toUpperCase();
+        outcome = "win";
     } else {
-        console.log("You lose! " + computerChoice + " beats " + humanChoice);
         computerScore++;
-    }
-    return [humanScore, computerScore];
-}
-
-// Create a new function named playGame.
-// Move your playRound function and score variables so that they’re declared inside of the new playGame function
-// Play 5 rounds by calling playRound 5 times.
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
-
-    for (let i = 0; i < 5; i++) {
-        console.log("Round " + (i + 1));
-        const humanSelection = getHumanChoice();
-        console.log("You chose: " + humanSelection);
-        const computerSelection = getComputerChoice();
-        [humanScore, computerScore] = playRound(humanSelection, computerSelection, humanScore, computerScore);
+        message = "YOU LOSE! " + computerChoice.toUpperCase() + " BEATS " + humanChoice.toUpperCase();
+        outcome = "lose";
     }
 
-    // After 5 rounds, console.log the winner of the game based on who won more rounds.
-    if (humanScore > computerScore) {
-        console.log("Congratulations! You won the game with a score of " + humanScore + " to " + computerScore);
-    } else if (computerScore > humanScore) {
-        console.log("Sorry! You lost the game with a score of " + humanScore + " to " + computerScore);
+    humanScoreEl.textContent = humanScore;
+    computerScoreEl.textContent = computerScore;
+    resultEl.textContent = message;
+    resultEl.className = "result " + outcome;
+
+    currentRound++;
+
+    if (currentRound > totalRounds) {
+        endGame();
     } else {
-        console.log("The game is a tie with a score of " + humanScore + " to " + computerScore);
+        roundInfoEl.textContent = "ROUND " + currentRound + " / " + totalRounds;
     }
 }
 
-playGame();
+function endGame() {
+    choiceBtns.forEach(function (btn) {
+        btn.disabled = true;
+    });
+    roundInfoEl.textContent = "GAME OVER";
+
+    let finalMessage;
+    let finalOutcome;
+
+    if (humanScore > computerScore) {
+        finalMessage = "YOU WON " + humanScore + " - " + computerScore + "!";
+        finalOutcome = "win";
+    } else if (computerScore > humanScore) {
+        finalMessage = "YOU LOST " + humanScore + " - " + computerScore + "...";
+        finalOutcome = "lose";
+    } else {
+        finalMessage = "IT'S A TIE " + humanScore + " - " + computerScore + "!";
+        finalOutcome = "tie";
+    }
+
+    finalResultEl.textContent = finalMessage;
+    finalResultEl.className = "final-result " + finalOutcome;
+    gameOverEl.classList.remove("hidden");
+}
+
+function resetGame() {
+    humanScore = 0;
+    computerScore = 0;
+    currentRound = 1;
+    humanScoreEl.textContent = "0";
+    computerScoreEl.textContent = "0";
+    roundInfoEl.textContent = "ROUND 1 / " + totalRounds;
+    resultEl.textContent = "PICK YOUR WEAPON!";
+    resultEl.className = "result";
+    finalResultEl.textContent = "";
+    gameOverEl.classList.add("hidden");
+    choiceBtns.forEach(function (btn) {
+        btn.disabled = false;
+    });
+}
+
+choiceBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+        playRound(btn.dataset.choice);
+    });
+});
+
+playAgainBtn.addEventListener("click", resetGame);
